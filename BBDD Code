@@ -1,0 +1,91 @@
+Creación de tablas:
+
+use proyecto_quiz;
+
+CREATE TABLE usuario (
+ id INT PRIMARY KEY,
+ nomUsu VARCHAR(50),
+ cont VARCHAR(50)
+);
+
+CREATE TABLE global (
+ id INT PRIMARY KEY,
+ totalJugador INT
+);
+
+CREATE TABLE partida (
+ id INT PRIMARY KEY,
+ puntuacion INT,
+ fecha DATE,
+ id_usuario INT,
+ FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+
+-- tabla de relación entre usuario y partida
+CREATE TABLE juega (
+ id INT PRIMARY KEY,
+ id_usuario INT,
+ id_partida INT,
+ FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+ FOREIGN KEY (id_partida) REFERENCES partida(id)
+);
+
+CREATE TABLE preguntas (
+ id INT PRIMARY KEY,
+ texto VARCHAR(255),
+ respuestas VARCHAR(255),
+ correcta VARCHAR(255),
+ id_partida INT,
+ FOREIGN KEY (id_partida) REFERENCES partida(id)
+);
+
+-- tabla de relación entre partida y preguntas
+CREATE TABLE tiene (
+ id INT PRIMARY KEY,
+ id_partida INT,
+ id_pregunta INT,
+ FOREIGN KEY (id_partida) REFERENCES partida(id),
+ FOREIGN KEY (id_pregunta) REFERENCES preguntas(id)
+);
+
+Inserción de datos:
+use proyecto_quiz;
+
+INSERT INTO usuario (id, nomUsu, cont) VALUES
+(1, 'JuanPerez', 'Juan123'),
+(2, 'AnaGomez', 'Ana456'),
+(3, 'CarlosRodriguez', 'Carlos789');
+
+INSERT INTO global (id, totalJugador) VALUES
+(1, 0);
+
+INSERT INTO partida (id, puntuacion, fecha, id_usuario) VALUES
+(1, 5, '2023-11-10', 1),
+(2, 5, '2023-11-11', 2),
+(3, 5, '2023-11-12', 3);
+
+INSERT INTO juega (id, id_usuario, id_partida) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
+
+INSERT INTO preguntas (id, texto, respuestas, correcta, id_partida) VALUES
+(1, '¿Cuál es la capital de España?', 'Madrid, Barcelona, Valencia', 'Madrid', 1),
+(2, '¿Cuál es el río más largo del mundo?', 'Nilo, Amazonas, Yangtsé', 'Nilo', 2),
+(3, '¿Quién es el autor de "Don Quijote"?', 'Miguel de Cervantes, Lope de Vega, Calderón', 'Miguel de Cervantes', 3),
+(4, '¿Cuál es el planeta más grande del sistema solar?', 'Júpiter, Saturno, Marte', 'Júpiter', 1),
+(5, '¿Quién pintó "La última cena"?', 'Leonardo da Vinci, Rafael, Miguel Ángel', 'Leonardo da Vinci', 2),
+(6, '¿Cuál es el animal más rápido del mundo?', 'Guepardo, Antílope, Águila', 'Guepardo', 3),
+(7, '¿Quién escribió "Cien años de soledad"?', 'Gabriel García Márquez, Julio Cortázar, Mario Vargas Llosa', 'Gabriel García Márquez', 1),
+(8, '¿Cuál es el elemento químico con el número atómico 1?', 'Hidrógeno, Helio, Litio', 'Hidrógeno', 2);
+
+INSERT INTO tiene (id, id_partida, id_pregunta) VALUES
+(1, 1, 1),
+(2, 1, 4),
+(3, 2, 2),
+(4, 2, 5),
+(5, 3, 3),
+(6, 3, 6),
+(7, 1, 7),
+(8, 2, 8);
+
