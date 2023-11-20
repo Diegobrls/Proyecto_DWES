@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <h2 class="text-center">Login</h2>
 
-                <form method="POST" action="login.php">
+                <form method="POST" action="./database/login.php">
                     <div class="form-group">
                         <label for="nomUsu">Nombre de usuario:</label>
                         <input type="text" name="nomUsu" id="nomUsu" class="form-control" required>
@@ -21,6 +21,8 @@
                     </div>
                     <input type="submit" value="Ingresar" class="btn btn-primary btn-block">
                 </form>
+                <br>
+                <a href="registro.php" class="btn btn-primary">Ir al registro</a>
             </div>
         </div>
     </div>

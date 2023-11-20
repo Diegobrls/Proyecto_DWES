@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <h2 class="text-center">Registro</h2>
 
-                <form method="POST" action="register.php">
+                <form method="POST" action="./database/registroUsu.php">
                     <div class="form-group">
                         <label for="nomUsu">Nombre de usuario:</label>
                         <input type="text"  id="nomUsu" class="form-control" required>
