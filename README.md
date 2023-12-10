@@ -1,8 +1,11 @@
 PROYECTO DE DESARROLLO WEB EN ENTORNO SERVIDOR
 
 Juego tipo Quiz 
-En mi proyecto pretendo crear una plataforma online de juegos de preguntas tipo quiz.
+En mi proyecto he creado una plataforma online de juegos de preguntas tipo quiz.
 En esta, el usuario podrá jugar de forma individual y entrar en un ranking a nivel mundial.
-En este desafio diario, al usuario se le plantearán 5 preguntas que tendrá que contestar en menos de 15 segundos, si no la propia página te cambiará de pregunta y esa te la dará como fallada.
-Los puntos se obtendrán en función de cuanto tardes en contestar, la puntuación perfecta serían 500 puntos, 100 por pregunta.
-También tendrá una característica especial, y es que cada semana habrá una temática diferente l cual puede coincidir con la época del año.
+En este, al usuario se le plantearán 5 preguntas que tendrá que contestar correctamente.
+Los puntos se obtienen dependiendo de si aciertas cada pregunta o no, cada pregunta acertada son 50 puntos, cada pregunta fallada son 0 puntos.
+
+Esta web está desarrollada enteramente usando php y el modelo vista controlador para facilitar su manejor, a demás de utilizar la herramienta Twig para las vistas
+
+Link a la web: http://quedeque.duckdns.org
