@@ -1,0 +1,46 @@
+{% extends "plantilla.php.twig" %}
+
+{% block cabeza %}
+{% endblock %}
+
+{% block cuerpo %}
+	<div>
+			<div>
+				<h2>Ranking</h2>
+				{% if rankingData %}
+				<table class="table">
+					<thread>
+						<tr>
+							<th>ID</th>
+							<th>Puntuación</th>
+						</tr>
+					</thread>
+					<tbody>
+						{% for rankingItem in rankingData %}
+							<tr>
+								<td>{{ rankingItem.idUsuario }}</td>
+								<td>{{ rankingItem.totalJugador }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% else %}
+			{% endif %}
+
+		{% if usuarioActualData %}
+			<div>
+				<h2>Tu Puntuación</h2>
+				<p>ID:
+					{{ usuarioActualData.idUsuario }}</p>
+				<p>Total:
+					{{ usuarioActualData.totalJugador }}</p>
+			</div>
+		{% else %}
+			<p>ID:
+				{{ usuarioActualData.idUsuario }}</p>
+		{% endif %}
+
+		<a href="home">Volver al home</a>
+
+	</div>
+{% endblock %}

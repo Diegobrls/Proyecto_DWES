@@ -1,0 +1,18 @@
+{% extends "plantilla.php.twig" %}
+
+{% block cabeza %}{% endblock %}
+
+{% block cuerpo %}
+	{% if datos %}
+		<div>
+			<h1>{{ datos.nombre }}</h1>
+			<p>email:
+				{{ datos.email }}</p>
+			<p>fecha registro:
+				{{ datos.fechaRegistro }}</p>
+			<h2>Puntos totales:
+				{{ puntos.totalJugador }}</h2>
+		</div>
+		{% else %}
+	{% endif %}
+{% endblock %}

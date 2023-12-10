@@ -1,0 +1,66 @@
+{% extends "plantilla.php.twig" %}
+
+{% block cabeza %}
+	<link rel="stylesheet" href="http://localhost/Quiz_QdQ/quiz/vistas/style.css">
+{% endblock %}
+
+{% block cuerpo %}
+	<div>
+		<h2>Insertar datos</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Texto de la Pregunta</th>
+					<th>Respuesta Uno</th>
+					<th>Respuesta Dos</th>
+					<th>Respuesta Correcta</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<form method="post" action="insertarDatosPregunta">
+						<td><input type="text" name="textoPregunta"></td>
+						<td><input type="text" name="respuestaUno"></td>
+						<td><input type="text" name="respuestaDos"></td>
+						<td><input type="text" name="respuestaCorrecta"></td>
+						<td>
+							<input type="submit" name="insertar" value="insertar" class="btn btn-primary mb-2"></input>
+						</td>
+					</form>
+				</tr>
+			</tbody>
+		</td>
+	</tr>
+</tbody></table>
+<h2>Lista de Preguntas</h2>
+{% if datos %}
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Texto de la Pregunta</th>
+			<th>Respuesta Uno</th>
+			<th>Respuesta Dos</th>
+			<th>Respuesta Correcta</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for pregunta in datos %}
+			<tr>
+				<td>{{ pregunta.idPregunta }}</td>
+				<td>{{ pregunta.textoPregunta }}</td>
+				<td>{{ pregunta.respuestaUno }}</td>
+				<td>{{ pregunta.respuestaDos }}</td>
+				<td>{{ pregunta.respuestaCorrecta }}</td>
+				<td>
+					<form method="post" action="eliminarPregunta">
+						<button name="borrar" value={{ pregunta.idPregunta }} class="btn btn-danger mb-2">borrar</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% else %}
+<p>No hay preguntas disponibles.</p>{% endif %}</div>{% endblock %}

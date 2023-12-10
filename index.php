@@ -1,28 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center">Login</h2>
+<?php
 
-                <form method="POST" action="login.php">
-                    <div class="form-group">
-                        <label for="nomUsu">Nombre de usuario:</label>
-                        <input type="text" name="nomUsu" id="nomUsu" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cont">Contraseña:</label>
-                        <input type="password" name="cont" id="cont" class="form-control" required>
-                    </div>
-                    <input type="submit" value="Ingresar" class="btn btn-primary btn-block">
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    session_start() ;
+
+    // Tenemos que indicarle al controlador frontal (index.php)
+    // qué queremos hacer (f) y con qué controlador/modelo (m).
+    // Indicamos esto a través de la URL.
+    // index.php?m=serie&f=main
+    //
+    // URLS AMIGABLES
+    // series --> index
+    // series/info.php?id=2   --> series/info/2
+
+    $que   = $_GET["f"]??$_POST["f"]??"showLogin" ;   // Función a realizar con el controlador|modelo
+    $quien = $_GET["m"]??$_POST["m"]??"usuario"   ;   // Serie, Usuario, Genero, Pelicula, etc...
+
+    // "Construimos" el nombre del controlador con el que vamos
+    // a trabajar.
+    $nombreControlador = "{$quien}Controller" ;
+
+    // Ruta hasta el controlador
+    $ruta = "controlador/{$nombreControlador}.php" ;
+
+    // Comprobamos si existe el archivo controlador
+    if (!file_exists($ruta))  die("** Error de acceso al controlador.") ;
+
+    // Importamos el controlador
+    require_once $ruta ;
+
+    // Instanciamos el controlador
+    $controlador = new $nombreControlador ;
+
+    // Invocamos la función que se nos indicaba en la URL
+    if (method_exists($controlador, $que)) $controlador->$que() ;
+    else die("** Error en el controlador.") ;
+
+
